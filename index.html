@@ -1,0 +1,851 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Maisha Delish: premium Nigerian catering, cooked meals, pastries, drinks and sweet baked goods. Order on WhatsApp 07823930527.">
+<link rel="icon" href="img/logo.png">
+<title>Maisha Delish</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Poppins:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: brand-green header with the Md roundel, full-width green and orange bands like the Maisha Delish flyers, real food photos, menu laid out as priced lists per section */
+:root{
+  --bg:#fffaf3;
+  --surface:#fdf0dc;
+  --card:#ffffff;
+  --fg:#13241a;
+  --muted:#55645a;
+  --line:#efdfc6;
+  --green:#12512d;
+  --green-deep:#0a3520;
+  --on-green:#ffffff;
+  --orange:#f7931e;
+  --gold:#fbb829;
+  --on-orange:#0a3520;
+  --heading:#12512d;
+  --swirl:repeating-radial-gradient(circle at 85% 15%,rgba(255,255,255,.09) 0 22px,transparent 22px 48px);
+  --shadow:0 12px 30px rgba(10,53,32,.12);
+  --f-display:"Shrikhand", "Cooper Black", Georgia, serif;
+  --f-body:"Poppins", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#08170f;--surface:#0f2619;--card:#10261a;--fg:#eef5ef;--muted:#a9bcae;--line:#1f3f2b;
+  --green:#17643a;--green-deep:#0a3520;--on-green:#fff;--orange:#f9a13a;--gold:#fcc243;--on-orange:#0a3520;
+  --heading:#fcc243;--shadow:0 12px 30px rgba(0,0,0,.45);color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#08170f;--surface:#0f2619;--card:#10261a;--fg:#eef5ef;--muted:#a9bcae;--line:#1f3f2b;
+  --green:#17643a;--green-deep:#0a3520;--on-green:#fff;--orange:#f9a13a;--gold:#fcc243;--on-orange:#0a3520;
+  --heading:#fcc243;--shadow:0 12px 30px rgba(0,0,0,.45);color-scheme:dark}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--fg);font-family:var(--f-body);font-size:16px;line-height:1.6}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--green-deep)}
+.wrap{max-width:1160px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{text-wrap:balance;margin:0;line-height:1.15}
+p{margin:0}
+img{display:block;max-width:100%}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px}
+.display{font-family:var(--f-display);font-weight:400;letter-spacing:.3px}
+
+/* Header */
+header.site{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--green-deep);color:#fff}
+.top{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:10px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;min-width:0}
+.brand img{width:56px;height:56px;border-radius:50%;flex:none;box-shadow:0 0 0 2px rgba(255,255,255,.85)}
+.brand b{display:block;font-family:var(--f-display);font-weight:400;font-size:24px;line-height:1.1}
+.brand b span{color:var(--gold)}
+.brand small{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#cfe3d4}
+.cart-btn{position:relative;background:var(--gold);color:var(--on-orange);border:0;border-radius:999px;padding:9px 16px;cursor:pointer;display:flex;gap:8px;align-items:center;font-weight:700;flex:none}
+.cart-btn svg{width:20px;height:20px}
+.badge{background:var(--green-deep);color:#fff;border-radius:999px;font-size:12px;min-width:22px;height:22px;display:grid;place-items:center;padding:0 6px;font-variant-numeric:tabular-nums}
+nav.main{background:var(--green);}
+nav.main .wrap{display:flex;justify-content:center;gap:clamp(6px,3vw,40px);overflow-x:auto;scrollbar-width:none}
+nav.main a{color:#e4f0e7;text-decoration:none;font-size:15px;font-weight:500;white-space:nowrap;padding:12px 8px;border-bottom:3px solid transparent}
+nav.main a:hover{color:#fff}
+nav.main a[aria-current="page"]{color:#fff;border-color:var(--gold);font-weight:700}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;padding:13px 26px;font-weight:700;cursor:pointer;text-decoration:none;font-size:15px}
+.btn.gold{background:var(--gold);color:var(--on-orange)}
+.btn.gold:hover{filter:brightness(1.06)}
+.btn.ghost{background:transparent;color:inherit;box-shadow:inset 0 0 0 2px currentColor}
+.btn.green{background:var(--green);color:var(--on-green)}
+.btn.wa{background:#1fa855;color:#fff}
+
+.view{display:none}
+.view.on{display:block}
+
+/* Hero */
+.hero{position:relative;color:#fff;background:linear-gradient(90deg,rgba(9,40,22,.92) 0%,rgba(9,40,22,.7) 45%,rgba(9,40,22,.15) 100%),url("img/trays.jpg") center/cover no-repeat,var(--green-deep)}
+.hero .wrap{padding-block:clamp(56px,9vw,120px);display:grid;gap:16px}
+.hero .kicker{font-size:13px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:700}
+.hero h1{font-family:var(--f-display);font-weight:400;font-size:clamp(40px,7vw,78px);line-height:1.02;max-width:11ch}
+.hero h1 span{color:var(--gold);display:block}
+.hero p{font-size:clamp(16px,2vw,19px);max-width:42ch;color:#e8f2ea}
+.hero .ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:6px}
+
+.pillars{background:var(--green-deep);color:#fff;padding-block:30px}
+.pillars .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;text-align:center}
+.pillar{display:grid;justify-items:center;gap:10px}
+.pillar i{width:70px;height:70px;border-radius:50%;background:var(--gold);display:grid;place-items:center;color:#fff}
+.pillar i svg{width:34px;height:34px}
+.pillar span{font-size:13px;letter-spacing:.12em;text-transform:uppercase;font-weight:600}
+
+.story{background:var(--green);color:#fff;padding-block:60px}
+.story .wrap{display:grid;grid-template-columns:1fr 1.1fr;gap:44px;align-items:center}
+.story h2{color:var(--orange);font-family:var(--f-display);font-weight:400;font-size:clamp(34px,5vw,50px)}
+.story p{color:#e4f0e7;max-width:58ch;margin-top:14px}
+.collage{display:grid;grid-template-columns:1.2fr 1fr;grid-template-rows:1fr 1fr;gap:12px;aspect-ratio:5/4;max-width:100%}
+.collage img{width:100%;height:100%;object-fit:cover;border-radius:16px}
+.collage img:first-child{grid-row:span 2}
+
+.feature{padding-block:60px}
+.feature .card{display:grid;grid-template-columns:1.1fr 1fr;background:var(--green-deep);color:#fff;border-radius:24px;overflow:hidden;box-shadow:var(--shadow)}
+.feature .card img{width:100%;height:100%;object-fit:cover;min-height:280px}
+.feature .txt{padding:32px;display:grid;gap:12px;align-content:center}
+.feature .tag{color:var(--gold);font-size:13px;letter-spacing:.16em;text-transform:uppercase;font-weight:700}
+.feature h2{font-family:var(--f-display);font-weight:400;font-size:clamp(28px,4vw,40px);color:var(--orange)}
+.feature ul{margin:0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+.feature li{background:rgba(255,255,255,.1);border-radius:999px;padding:4px 12px;font-size:14px}
+.price-big{font-family:var(--f-display);font-size:44px;color:var(--gold);line-height:1;font-variant-numeric:tabular-nums}
+
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:16px;flex-wrap:wrap;margin-bottom:22px}
+.sec-head h2{font-family:var(--f-display);font-weight:400;color:var(--heading);font-size:clamp(28px,4vw,40px)}
+.favs{padding-block:0 60px}
+.fav-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.fav{background:var(--card);border-radius:18px;overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column}
+.fav img{aspect-ratio:1;object-fit:cover;width:100%}
+.fav div{padding:14px 16px 16px;display:grid;gap:4px}
+.fav b{font-size:17px}
+.fav span{color:var(--muted);font-size:14px}
+
+.promise{background:var(--surface);padding-block:44px}
+.promise .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.promise h3{font-size:16px;color:var(--heading);margin-bottom:4px}
+.promise p{color:var(--muted);font-size:14px}
+
+/* Page title band */
+.page-band{background:var(--swirl),linear-gradient(120deg,var(--orange),var(--gold));color:var(--on-orange)}
+.page-band .wrap{padding-block:34px}
+.page-band h1{font-family:var(--f-display);font-weight:400;font-size:clamp(34px,5vw,52px);color:var(--green-deep)}
+.page-band p{font-weight:500;margin-top:4px}
+
+/* Menu */
+.menu-nav{position:sticky;top:calc(env(safe-area-inset-top,0px) + 122px);z-index:15;background:var(--bg);border-bottom:1px solid var(--line)}
+.menu-nav .wrap{display:flex;gap:8px;overflow-x:auto;padding-block:12px;scrollbar-width:none}
+.chip{border:1px solid var(--line);border-radius:999px;padding:7px 15px;background:var(--card);font-weight:600;cursor:pointer;font-size:14px;white-space:nowrap;color:var(--fg)}
+.chip:hover{border-color:var(--green)}
+.menu-sec{padding-block:40px 10px;scroll-margin-top:200px}
+.menu-sec .banner{display:grid;grid-template-columns:1fr 1.2fr;gap:0;border-radius:22px;overflow:hidden;background:var(--green-deep);color:#fff;margin-bottom:18px}
+.menu-sec .banner img{width:100%;height:100%;object-fit:cover;min-height:190px;max-height:260px}
+.menu-sec .banner div{padding:26px;display:grid;align-content:center;gap:8px}
+.menu-sec .banner h2{font-family:var(--f-display);font-weight:400;color:var(--orange);font-size:clamp(28px,4vw,38px)}
+.menu-sec .banner p{color:#d9e9dd;font-size:15px}
+.items{display:grid;grid-template-columns:1fr 1fr;gap:0 32px}
+.item{display:grid;grid-template-columns:1fr auto;gap:6px 16px;padding:16px 0;border-bottom:1px dashed var(--line);align-items:start}
+.item h3{font-size:17px;font-weight:700}
+.item p{color:var(--muted);font-size:14px;grid-column:1}
+.item .incl{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:6px;margin-top:4px}
+.item .incl span{background:var(--surface);border-radius:999px;padding:2px 10px;font-size:13px}
+.opts{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.opt{display:inline-flex;align-items:center;gap:8px;border:0;border-radius:999px;background:var(--green);color:var(--on-green);padding:7px 8px 7px 14px;font-weight:600;font-size:14px;cursor:pointer}
+.opt b{background:var(--gold);color:var(--on-orange);border-radius:999px;padding:2px 10px;font-variant-numeric:tabular-nums}
+.opt.done{background:var(--orange);color:var(--on-orange)}
+.opt.ask{background:transparent;color:var(--heading);box-shadow:inset 0 0 0 2px currentColor;text-decoration:none;padding:7px 14px}
+.menu-info{background:var(--green);color:#fff;border-radius:22px;padding:26px;margin-block:40px 60px;display:grid;grid-template-columns:1fr 1fr;gap:8px 30px}
+.menu-info h2{grid-column:1/-1;font-family:var(--f-display);font-weight:400;color:var(--gold);font-size:30px;margin-bottom:6px}
+.menu-info li{margin-bottom:6px}
+.menu-info ul{margin:0;padding-left:20px}
+
+/* Catering */
+.cater-hero{color:#fff;background:linear-gradient(180deg,rgba(9,40,22,.55),rgba(9,40,22,.88)),url("img/smallchops.jpg") center 40%/cover no-repeat,var(--green-deep);text-align:center}
+.cater-hero .wrap{padding-block:clamp(70px,10vw,130px);display:grid;gap:14px;justify-items:center}
+.cater-hero h1{font-family:var(--f-display);font-weight:400;font-size:clamp(38px,6vw,64px)}
+.cater-hero p{max-width:44ch;font-size:18px}
+.services{padding-block:56px}
+.svc-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.svc{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px}
+.svc h3{font-size:17px;color:var(--heading);margin-bottom:6px}
+.svc p{color:var(--muted);font-size:14px}
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:30px}
+.gallery img{aspect-ratio:1;object-fit:cover;border-radius:14px;width:100%}
+
+/* Forms */
+.form-sec{padding-block:56px;background:var(--surface)}
+.form-grid{display:grid;grid-template-columns:1fr 1.3fr;gap:40px;align-items:start}
+.form-grid > div{min-width:0}
+form.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px;display:grid;grid-template-columns:1fr 1fr;gap:14px;box-shadow:var(--shadow);min-width:0}
+form.card .full{grid-column:1/-1}
+label{display:grid;gap:5px;font-weight:600;font-size:14px}
+input,select,textarea{border:1px solid var(--line);border-radius:10px;padding:11px 12px;background:var(--bg);font-weight:400;width:100%;min-width:0}
+textarea{min-height:90px;resize:vertical}
+.note{color:var(--muted);font-size:14px}
+.facts{display:grid;gap:12px;margin:18px 0 0;padding:0}
+.facts div{display:grid;grid-template-columns:130px 1fr;gap:10px;border-bottom:1px solid var(--line);padding-bottom:10px}
+.facts dt{font-weight:700;color:var(--heading)}
+.facts dd{margin:0}
+.done-box{grid-column:1/-1;background:var(--surface);border-radius:14px;padding:16px;border:2px dashed var(--green);display:grid;gap:10px}
+.done-box pre{white-space:pre-wrap;font-family:inherit;margin:0;font-size:14px;background:var(--card);border-radius:10px;padding:12px}
+.done-box .row{display:flex;gap:10px;flex-wrap:wrap}
+.err{color:#c0341d;font-weight:600}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding-block:36px}
+.step{border-top:4px solid var(--orange);padding-top:12px}
+.step b{display:block;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--heading)}
+.step p{font-size:15px;color:var(--muted)}
+
+/* About */
+.about{padding-block:56px}
+.about .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:44px;align-items:center}
+.about .pic{position:relative}
+.about .pic img.main{border-radius:22px;aspect-ratio:4/5;object-fit:cover;width:100%}
+.about .pic img.badge-logo{position:absolute;right:-10px;bottom:-14px;width:120px;height:120px;border-radius:50%;box-shadow:0 0 0 5px var(--bg)}
+.about h2{font-family:var(--f-display);font-weight:400;color:var(--heading);font-size:clamp(30px,4.5vw,44px)}
+.about p{margin-top:14px;max-width:60ch}
+.svc-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;padding:0;list-style:none}
+.svc-list li{background:var(--green);color:#fff;border-radius:999px;padding:6px 14px;font-size:14px;font-weight:500}
+
+/* Cart */
+.scrim{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:40}
+.drawer{position:fixed;top:0;right:0;bottom:0;width:min(430px,100%);background:var(--bg);z-index:41;display:flex;flex-direction:column;box-shadow:-10px 0 40px rgba(0,0,0,.25);padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);padding-right:env(safe-area-inset-right,0px)}
+.drawer header{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;background:var(--green-deep);color:#fff}
+.drawer header h2{font-family:var(--f-display);font-weight:400;font-size:24px}
+.x{background:none;border:0;font-size:30px;cursor:pointer;line-height:1;color:#fff}
+.lines{flex:1;overflow:auto;padding:6px 20px}
+.line{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.line b{display:block;font-size:15px}
+.line small{color:var(--muted)}
+.qty{display:flex;align-items:center;border:1px solid var(--line);border-radius:999px}
+.qty button{background:none;border:0;width:32px;height:32px;cursor:pointer;font-size:18px;font-weight:700}
+.qty span{min-width:22px;text-align:center;font-variant-numeric:tabular-nums}
+.drawer footer{padding:18px 20px;border-top:1px solid var(--line);display:grid;gap:10px}
+.tot{display:flex;justify-content:space-between;font-weight:800;font-size:18px;font-variant-numeric:tabular-nums}
+.empty{color:var(--muted);text-align:center;padding:40px 0}
+.toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);background:var(--green-deep);color:#fff;padding:12px 20px;border-radius:999px;font-weight:600;z-index:50;box-shadow:var(--shadow);max-width:calc(100% - 32px);text-align:center}
+
+/* Footer */
+footer.site{background:var(--green-deep);color:#e4f0e7;padding-block:44px 28px}
+footer.site .cols{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:30px}
+footer.site h4{margin:0 0 10px;color:var(--gold);font-size:14px;letter-spacing:.12em;text-transform:uppercase}
+footer.site a{color:#fff}
+footer.site p{margin-bottom:6px}
+footer.site .fine{margin-top:26px;font-size:13px;color:#a9c7b2;border-top:1px solid rgba(255,255,255,.15);padding-top:16px}
+.copy{background:rgba(255,255,255,.14);border:0;color:#fff;border-radius:6px;padding:2px 8px;font-size:12px;cursor:pointer;margin-left:6px}
+.social{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+.social a{background:rgba(255,255,255,.12);border-radius:999px;padding:6px 14px;text-decoration:none;font-size:14px}
+
+/* UX upgrades */
+:root{--hdr:124px}
+.trust{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:10px;font-size:14px;color:#e8f2ea}
+.trust span{display:inline-flex;align-items:center;gap:8px}
+.trust span::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--gold);flex:none}
+.how{padding-block:56px}
+.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.how-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;display:grid;gap:8px;align-content:start}
+.how-card .n{width:40px;height:40px;border-radius:50%;background:var(--orange);color:var(--on-orange);display:grid;place-items:center;font-weight:800}
+.how-card h3{font-size:18px;color:var(--heading)}
+.how-card p{color:var(--muted);font-size:15px}
+.cta-band{background:var(--orange);color:var(--on-orange)}
+.cta-band .wrap{padding-block:36px;display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.cta-band{background:var(--swirl),linear-gradient(120deg,var(--orange),var(--gold))}
+.cta-band h2{font-family:var(--f-display);font-weight:400;font-size:clamp(26px,4vw,36px);color:var(--green-deep)}
+nav.main{border-bottom:3px solid var(--orange)}
+.story{background:var(--swirl),var(--green)}
+.pillars{border-bottom:4px solid var(--gold)}
+.menu-sec .banner figure{margin:0;display:grid;grid-template-columns:1fr 1fr;gap:3px;min-width:0}
+.menu-sec .banner figure img{min-height:190px}
+.gallery{grid-template-columns:repeat(3,1fr)}
+.gallery img{aspect-ratio:4/3}
+footer.site{border-top:4px solid var(--orange)}
+.cta-band p{font-weight:500;margin-top:4px}
+.cta-band .row{display:flex;gap:10px;flex-wrap:wrap}
+.fav,.how-card{transition:transform .2s ease,box-shadow .2s ease}
+.fav:hover{transform:translateY(-4px);box-shadow:0 18px 36px rgba(12,58,32,.18)}
+.fav img{transition:transform .4s ease}
+.fav{position:relative}
+.fav .imgbox{overflow:hidden}
+.fav:hover img{transform:scale(1.05)}
+.fav .go{font-size:13px;font-weight:700;color:var(--heading);margin-top:2px}
+.btn{transition:transform .15s ease,filter .15s ease}
+.btn:active,.opt:active{transform:scale(.97)}
+
+/* Menu tools */
+.menu-nav{top:calc(env(safe-area-inset-top,0px) + var(--hdr))}
+.menu-nav .wrap.menu-tools{display:flex;gap:12px;align-items:center;overflow:visible}
+#menuNav{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;flex:1;min-width:0}
+.search{position:relative;flex:none;width:240px;display:block}
+.search input{border-radius:999px;padding:8px 14px 8px 38px;background:var(--card)}
+.search svg{position:absolute;left:13px;top:50%;transform:translateY(-50%);width:16px;height:16px;color:var(--muted);pointer-events:none}
+.chip.on{background:var(--green);color:var(--on-green);border-color:var(--green)}
+.menu-sec{scroll-margin-top:calc(env(safe-area-inset-top,0px) + var(--hdr) + 70px)}
+.item{display:flex;gap:14px;align-items:flex-start}
+.item .thumb{width:80px;height:80px;border-radius:14px;object-fit:cover;flex:none;background:var(--surface)}
+.item .thumb.ph{object-fit:contain;padding:16px;opacity:.5}
+.item .body{flex:1;min-width:0;display:grid;gap:4px}
+.item .body .incl,.item .body .opts{grid-column:auto}
+.opt .n{background:#fff;color:var(--green-deep);border-radius:999px;min-width:22px;height:22px;display:inline-grid;place-items:center;font-size:12px;font-weight:800;padding:0 6px}
+.no-results{padding:50px 0;color:var(--muted);text-align:center}
+
+/* Cart drawer + bars */
+@keyframes slideIn{from{transform:translateX(100%)}to{transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.drawer:not([hidden]){animation:slideIn .25s ease}
+.scrim:not([hidden]){animation:fadeIn .2s ease}
+.empty .btn{margin-top:16px}
+.cartbar{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--green-deep);padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));box-shadow:0 -8px 24px rgba(0,0,0,.2);display:none}
+.cartbar button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:12px;background:var(--gold);color:var(--on-orange);border:0;border-radius:999px;padding:13px 20px;font-weight:700;cursor:pointer;font-variant-numeric:tabular-nums}
+.wa-fab{position:fixed;right:calc(18px + env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:29;width:58px;height:58px;border-radius:50%;background:#1fa855;color:#fff;display:grid;place-items:center;box-shadow:0 8px 24px rgba(0,0,0,.28);transition:bottom .2s ease}
+.wa-fab svg{width:30px;height:30px}
+.field-err{color:#c0341d;font-size:13px;font-weight:500}
+input[aria-invalid="true"],select[aria-invalid="true"]{border-color:#c0341d;box-shadow:0 0 0 3px rgba(192,52,29,.12)}
+.po-empty{background:var(--card);border:2px dashed var(--line);border-radius:16px;padding:22px;display:grid;gap:10px;justify-items:start}
+
+@media (max-width:900px){
+  .how-grid{grid-template-columns:1fr}
+  .menu-nav .wrap.menu-tools{flex-wrap:wrap}
+  .search{width:100%}
+}
+@media (max-width:700px){
+  body.has-items .cartbar{display:block}
+  body.has-items .wa-fab{bottom:calc(86px + env(safe-area-inset-bottom,0px))}
+  body.has-items footer.site{padding-bottom:110px}
+  body.has-items .toast{bottom:calc(92px + env(safe-area-inset-bottom,0px))}
+  .menu-sec .banner img{max-height:180px;min-height:150px}
+  .cta-band .wrap{flex-direction:column;align-items:flex-start}
+}
+@media (max-width:420px){.brand small{display:none}}
+@media (prefers-reduced-motion: reduce){.drawer:not([hidden]),.scrim:not([hidden]){animation:none}.fav:hover,.fav:hover img{transform:none}}
+
+@media (max-width:900px){
+  .story .wrap,.form-grid,.about .wrap,.feature .card,.menu-sec .banner{grid-template-columns:1fr}
+  .fav-grid,.svc-grid,.gallery{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:1fr 1fr}
+  .promise .wrap,footer.site .cols{grid-template-columns:1fr}
+  .items{grid-template-columns:1fr}
+}
+@media (max-width:560px){
+  .brand b{font-size:20px}
+  .brand img{width:46px;height:46px}
+  .brand small{font-size:10px}
+  .cart-btn .lbl{display:none}
+  nav.main .wrap{justify-content:flex-start}
+  .pillars .wrap{grid-template-columns:1fr 1fr}
+  form.card,.menu-info{grid-template-columns:1fr}
+  .steps,.svc-grid{grid-template-columns:1fr}
+  .facts div{grid-template-columns:1fr;gap:2px}
+  .about .pic img.badge-logo{width:90px;height:90px;right:6px}
+}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+</style>
+<style>body{margin:0}</style>
+</head>
+<body>
+
+
+<header class="site">
+  <div class="wrap top">
+    <a class="brand" href="#home" data-go="home" aria-label="Maisha Delish home">
+      <img src="img/logo.png" alt="Maisha Delish logo">
+      <div><b>Maisha <span>Delish</span></b><small>Serving premium with passion</small></div>
+    </a>
+    <button class="cart-btn" id="cartBtn" aria-label="Open cart">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 7h12l-1 13H7L6 7z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+      <span class="lbl">Cart</span><span class="badge" id="cartCount">0</span>
+    </button>
+  </div>
+  <nav class="main" aria-label="Main">
+    <div class="wrap">
+      <a href="#home" data-go="home">Home</a>
+      <a href="#about" data-go="about">About</a>
+      <a href="#catering" data-go="catering">Catering</a>
+      <a href="#menu" data-go="menu">Our Menu</a>
+      <a href="#preorder" data-go="preorder">Pre-Order</a>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <!-- HOME -->
+  <div class="view" id="v-home">
+    <section class="hero">
+      <div class="wrap">
+        <span class="kicker">Catering · Food · Drinks · Sweet Baked Goods</span>
+        <h1>Maisha <span>Delish</span></h1>
+        <p>Premium cooked meals, pastries and drinks. Make your occasions memorable with delicious Nigerian food.</p>
+        <div class="ctas">
+          <a class="btn gold" href="#menu" data-go="menu">See our menu</a>
+          <a class="btn ghost" href="#catering" data-go="catering">Book catering</a>
+        </div>
+        <div class="trust"><span>Freshly baked daily</span><span>Hygienically sealed</span><span>Delivery available</span><span>Order on WhatsApp</span></div>
+      </div>
+    </section>
+
+    <section class="pillars" aria-label="What we do">
+      <div class="wrap">
+        <div class="pillar"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M7 3v8a2 2 0 0 0 2 2v8M5 3v5M9 3v5M16 3c-1.5 2-2 4-2 7h3v11"/></svg></i><span>Catering</span></div>
+        <div class="pillar"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="4"/></svg></i><span>Food</span></div>
+        <div class="pillar"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8h12l-1.5 13h-9L6 8zM5 8h14M12 8l2-5h3"/></svg></i><span>Drinks</span></div>
+        <div class="pillar"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14l-2 8H7l-2-8zM6 12a6 6 0 0 1 12 0M12 4v2"/></svg></i><span>Sweet Baked Goods</span></div>
+      </div>
+    </section>
+
+    <section class="story">
+      <div class="wrap">
+        <div>
+          <h2>Our Story</h2>
+          <p>Maisha Delish specializes in premium cooked meals, pastries and drinks. From smoky jollof and peppered sauces to fresh meat pies, puff puff and chin chin, everything is made with care and served with passion.</p>
+          <p>We cater weddings, birthdays, corporate events and festive celebrations, and we prepare food trays, food packages and weekly meal prep for families.</p>
+          <div style="margin-top:22px;display:flex;gap:12px;flex-wrap:wrap"><a class="btn gold" href="#about" data-go="about">Read more</a></div>
+        </div>
+        <div class="collage">
+          <img src="img/smallchops.jpg" alt="Small chops cones with peppered meat, spring rolls and samosas">
+          <img src="img/chinchin.jpg" alt="Tubs of Maisha Delish chin chin">
+          <img src="img/cake.jpg" alt="White birthday cake with gold crown topper">
+        </div>
+      </div>
+    </section>
+
+    <section class="feature">
+      <div class="wrap">
+        <div class="card">
+          <img src="img/celebration.jpg" alt="Jollof spaghetti, chicken and beans with agoyin sauce and plantain">
+          <div class="txt">
+            <span class="tag">Food package</span>
+            <h2>The Ultimate Celebration Tray</h2>
+            <ul>
+              <li>Smokey jollof rice</li><li>Fried rice</li><li>Beans + agoyin sauce &amp; plantain</li><li>Gizdodo</li><li>Jollof spaghetti</li><li>4 chicken</li><li>2 hake fish</li><li>2 fruit parfaits</li><li>2 shawarma</li><li>Box of grapes</li><li>Chocolate</li><li>Drink</li>
+            </ul>
+            <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:6px">
+              <span class="price-big">£190</span>
+              <button class="btn gold" data-add="celebration" data-opt="0">Add to cart</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="favs">
+      <div class="wrap">
+        <div class="sec-head">
+          <h2>Customer favourites</h2>
+          <a class="btn green" href="#menu" data-go="menu">View full menu</a>
+        </div>
+        <div class="fav-grid">
+          <a class="fav" href="#menu" data-go="menu" data-jump="savory" style="text-decoration:none;color:inherit"><div class="imgbox"><img src="img/pies.jpg" alt="Freshly baked meat pies"></div><div><b>Meat Pies</b><span>£2.50 each · £25 box of 10</span><span class="go">Order now →</span></div></a>
+          <a class="fav" href="#menu" data-go="menu" data-jump="sweet" style="text-decoration:none;color:inherit"><div class="imgbox"><img src="img/puffpuff.jpg" alt="Bowl of puff puff"></div><div><b>Puff Puff</b><span>£1.00 each · £10 for 10</span><span class="go">Order now →</span></div></a>
+          <a class="fav" href="#menu" data-go="menu" data-jump="sweet" style="text-decoration:none;color:inherit"><div class="imgbox"><img src="img/chinchin.jpg" alt="Chin chin tubs"></div><div><b>Chin Chin</b><span>£6 for a 1.5L tub</span><span class="go">Order now →</span></div></a>
+          <a class="fav" href="#menu" data-go="menu" data-jump="cakes" style="text-decoration:none;color:inherit"><div class="imgbox"><img src="img/bananabread.jpg" alt="Banana bread with granola and chocolate"></div><div><b>Banana Bread</b><span>£4.00 · your choice of topping</span><span class="go">Order now →</span></div></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="promise">
+      <div class="wrap">
+        <div><h3>Freshly baked daily</h3><p>Quality guaranteed on every pastry and bake.</p></div>
+        <div><h3>Hygienically sealed</h3><p>Every order is packed in sealed packaging.</p></div>
+        <div><h3>Bulk orders welcome</h3><p>Discounts on bulk orders. Vegan and vegetarian options on request.</p></div>
+      </div>
+    </section>
+
+    <section class="how">
+      <div class="wrap">
+        <div class="sec-head"><h2>How to order</h2></div>
+        <div class="how-grid">
+          <div class="how-card"><span class="n">1</span><h3>Pick your food</h3><p>Browse Our Menu and add meals, pastries and treats to your cart.</p></div>
+          <div class="how-card"><span class="n">2</span><h3>Send it on WhatsApp</h3><p>Add your details and your order opens in WhatsApp, ready to send to us.</p></div>
+          <div class="how-card"><span class="n">3</span><h3>We confirm &amp; deliver</h3><p>We confirm your total and delivery cost, then you collect or we deliver.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-band">
+      <div class="wrap">
+        <div><h2>Planning an event?</h2><p>Weddings, birthdays, corporate and festive catering.</p></div>
+        <div class="row">
+          <a class="btn green" href="#catering" data-go="catering">Get a catering quote</a>
+          <a class="btn wa" href="https://wa.me/447823930527" target="_blank" rel="noopener">Chat on WhatsApp</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="view" id="v-about">
+    <div class="page-band"><div class="wrap"><h1>About us</h1><p>Serving premium with passion</p></div></div>
+    <section class="about">
+      <div class="wrap">
+        <div class="pic">
+          <img class="main" src="img/trays.jpg" alt="Trays of jollof rice, fried rice, egusi and stew">
+          <img class="badge-logo" src="img/logo.png" alt="">
+        </div>
+        <div>
+          <h2>Premium meals, pastries &amp; drinks</h2>
+          <p>Maisha Delish is a Nigerian food business serving premium cooked meals, savory pastries, sweet treats, cakes and drinks. We cook for families, parties and businesses, and we bring the same care to a single meat pie as to a full event.</p>
+          <p>Our trays of jollof rice, fried rice, egusi and stews are made fresh to order. Our pastries are freshly baked daily and packed in hygienically sealed packaging.</p>
+          <ul class="svc-list" aria-label="Our services">
+            <li>Event Catering</li><li>Corporate Catering</li><li>Menu Service</li><li>Food Packages</li><li>Custom orders for events</li><li>Weekly meal prep</li><li>Festive meals</li><li>Food Trays</li>
+          </ul>
+          <div style="margin-top:24px;display:flex;gap:12px;flex-wrap:wrap">
+            <a class="btn green" href="#menu" data-go="menu">See our menu</a>
+            <a class="btn ghost" href="#catering" data-go="catering" style="color:var(--heading)">Book catering</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- CATERING -->
+  <div class="view" id="v-catering">
+    <section class="cater-hero">
+      <div class="wrap">
+        <h1>Event Catering</h1>
+        <p>Make your occasions memorable with delicious Nigerian meals.</p>
+        <a class="btn gold" href="#cater-form" data-scroll="cater-form">Request a quote</a>
+      </div>
+    </section>
+
+    <section class="services">
+      <div class="wrap">
+        <div class="sec-head"><h2>What we cater</h2></div>
+        <div class="svc-grid">
+          <div class="svc"><h3>Event Catering</h3><p>Weddings, birthdays, naming ceremonies and parties of any size.</p></div>
+          <div class="svc"><h3>Corporate Catering</h3><p>Office lunches, meetings and company events.</p></div>
+          <div class="svc"><h3>Food Trays</h3><p>Party trays of jollof, fried rice, stews and sauces.</p></div>
+          <div class="svc"><h3>Custom orders</h3><p>Build your own menu for your event.</p></div>
+          <div class="svc"><h3>Food Packages</h3><p>Ready-made packages like the Ultimate Celebration Tray.</p></div>
+          <div class="svc"><h3>Festive meals</h3><p>Christmas, Eid, Easter and holiday spreads.</p></div>
+          <div class="svc"><h3>Weekly meal prep</h3><p>Home-cooked meals prepared for your week.</p></div>
+          <div class="svc"><h3>Small chops &amp; pastries</h3><p>Meat pies, samosas, spring rolls and small chops cones.</p></div>
+        </div>
+        <div class="gallery">
+          <img src="img/smallchops.jpg" alt="Small chops cones">
+          <img src="img/trays.jpg" alt="Party food trays">
+          <img src="img/pies.jpg" alt="Meat pies">
+          <img src="img/cake.jpg" alt="Birthday cake">
+          <img src="img/buffet-serving.jpg" alt="Caterers serving rice, pasta and grilled meat at a buffet">
+          <img src="img/buffet-salad.jpg" alt="Guest being served salad at an event buffet">
+        </div>
+      </div>
+    </section>
+
+    <section class="form-sec" id="cater-form">
+      <div class="wrap form-grid">
+        <div>
+          <h2 class="display" style="color:var(--heading);font-size:clamp(28px,4vw,40px)">Book your event</h2>
+          <p class="note" style="margin-top:10px">Tell us about your event. Your request opens in WhatsApp so it comes straight to us, and we'll reply with a quote.</p>
+          <dl class="facts">
+            <div><dt>Phone</dt><dd>07823930527</dd></div>
+            <div><dt>Email</dt><dd>maishadelish@gmail.com</dd></div>
+            <div><dt>Delivery</dt><dd>Available at additional cost, based on location</dd></div>
+            <div><dt>Diet</dt><dd>Vegan and vegetarian options on request</dd></div>
+          </dl>
+        </div>
+        <form class="card" id="caterForm" novalidate>
+          <label>Full name<input id="c-name" required autocomplete="name"></label>
+          <label>Phone / WhatsApp<input id="c-phone" required autocomplete="tel" inputmode="tel"></label>
+          <label>Event date<input id="c-date" type="date" required></label>
+          <label>Number of guests<input id="c-guests" type="number" min="1" step="1" required></label>
+          <label>Event type<select id="c-type"><option>Wedding</option><option>Birthday</option><option>Corporate event</option><option>Church / naming ceremony</option><option>Festive meal</option><option>Other</option></select></label>
+          <label>Service<select id="c-svc"><option>Food trays (drop-off)</option><option>Full event catering</option><option>Small chops &amp; pastries</option><option>Food package</option><option>Not sure yet</option></select></label>
+          <label class="full">Venue / postcode<input id="c-venue"></label>
+          <label class="full">Dishes you'd like / notes<textarea id="c-notes" placeholder="e.g. Jollof rice, fried rice, peppered turkey, small chops, puff puff"></textarea></label>
+          <div class="full"><button class="btn gold" type="submit">Prepare my request</button></div>
+          <div class="done-box" id="caterDone" hidden></div>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <!-- MENU -->
+  <div class="view" id="v-menu">
+    <div class="page-band"><div class="wrap"><h1>Our Menu</h1><p>All prices in GBP. Tap a price to add it to your cart.</p></div></div>
+    <div class="menu-nav"><div class="wrap menu-tools">
+      <label class="search" for="menuSearch"><span class="visually-hidden" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Search the menu</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <input id="menuSearch" type="search" placeholder="Search: jollof, pie, chin chin…" autocomplete="off">
+      </label>
+      <div id="menuNav" role="group" aria-label="Menu sections"></div>
+    </div></div>
+    <div class="wrap" id="menuBody"></div>
+    <div class="wrap no-results" id="noResults" hidden>No dishes match your search. Try “rice”, “pie” or “cake”.</div>
+    <div class="wrap">
+      <div class="menu-info">
+        <h2>Additional info</h2>
+        <ul>
+          <li>Bulk orders available with discounts</li>
+          <li>Custom pastry mixes accepted (minimum order ten pieces of any pastry)</li>
+          <li>Delivery available at additional cost based on location</li>
+        </ul>
+        <ul>
+          <li>Hygienically sealed packaging</li>
+          <li>Freshly baked daily, quality guaranteed</li>
+          <li>Vegan/vegetarian options upon request</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRE-ORDER -->
+  <div class="view" id="v-preorder">
+    <div class="page-band"><div class="wrap"><h1>Pre-Order</h1><p>Order ahead for pickup or delivery</p></div></div>
+    <div class="wrap steps">
+      <div class="step"><b>1 · Choose</b><p>Add dishes, pastries and treats from Our Menu.</p></div>
+      <div class="step"><b>2 · Send</b><p>Fill in your details and send the order to us on WhatsApp.</p></div>
+      <div class="step"><b>3 · Confirm</b><p>We confirm your total, including any delivery cost.</p></div>
+      <div class="step"><b>4 · Enjoy</b><p>Collect your order or have it delivered.</p></div>
+    </div>
+    <section class="form-sec" style="padding-top:40px">
+      <div class="wrap form-grid">
+        <div>
+          <h2 class="display" style="color:var(--heading);font-size:clamp(28px,4vw,40px)">Your order</h2>
+          <div id="poSummary" style="margin-top:14px"></div>
+        </div>
+        <form class="card" id="poForm" novalidate>
+          <label>Full name<input id="p-name" required autocomplete="name"></label>
+          <label>Phone / WhatsApp<input id="p-phone" required autocomplete="tel" inputmode="tel"></label>
+          <label>Pickup or delivery<select id="p-mode"><option>Pickup</option><option>Delivery</option></select></label>
+          <label>Date needed<input id="p-date" type="date"></label>
+          <label class="full">Delivery address / postcode<input id="p-addr" placeholder="Only needed for delivery"></label>
+          <label class="full">Notes (pepper level, allergies, pastry mix)<textarea id="p-notes"></textarea></label>
+          <div class="full"><button class="btn gold" type="submit">Prepare my order</button></div>
+          <div class="done-box" id="poDone" hidden></div>
+        </form>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <div style="display:flex;align-items:center;gap:12px"><img src="img/logo.png" alt="" style="width:64px;height:64px;border-radius:50%"><div class="display" style="font-size:26px;color:#fff">Maisha <span style="color:var(--gold)">Delish</span></div></div>
+        <p style="margin-top:12px;max-width:40ch">Catering · Food · Drinks · Sweet Baked Goods. Serving premium with passion.</p>
+      </div>
+      <div>
+        <h4>For more enquiries</h4>
+        <p>Phone: <span id="phoneTxt">07823930527</span><button class="copy" data-copy="phoneTxt">Copy</button></p>
+        <p>Email: <span id="mailTxt">maishadelish@gmail.com</span><button class="copy" data-copy="mailTxt">Copy</button></p>
+        <div class="social"><a href="https://wa.me/447823930527" target="_blank" rel="noopener">WhatsApp</a></div>
+      </div>
+      <div>
+        <h4>Follow us</h4>
+        <p>@maisha_delish</p>
+        <div class="social">
+          <a href="https://www.instagram.com/maisha_delish" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.tiktok.com/@maisha_delish" target="_blank" rel="noopener">TikTok</a>
+        </div>
+      </div>
+    </div>
+    <p class="fine">© 2026 Maisha Delish. Delivery available at additional cost based on location.</p>
+  </div>
+</footer>
+
+<div class="scrim" id="scrim" hidden></div>
+<aside class="drawer" id="drawer" hidden role="dialog" aria-modal="true" aria-label="Your cart">
+  <header><h2>Your cart</h2><button class="x" id="closeCart" aria-label="Close cart">×</button></header>
+  <div class="lines" id="lines"></div>
+  <footer>
+    <div class="tot"><span>Subtotal</span><span id="subtotal">£0.00</span></div>
+    <p class="note">Delivery is added based on your location.</p>
+    <a class="btn gold" href="#preorder" data-go="preorder">Continue to pre-order</a>
+  </footer>
+</aside>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+<div class="cartbar" id="cartbar"><button type="button" id="cartbarBtn"><span id="cartbarCount">0 items</span><span>View cart · <b id="cartbarTotal">£0.00</b></span></button></div>
+<a class="wa-fab" href="https://wa.me/447823930527" target="_blank" rel="noopener" aria-label="Chat with Maisha Delish on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2c0 1.3.9 2.5 1 2.7.1.2 1.8 2.8 4.4 3.9 1.6.7 2.3.8 3.1.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.2-.3-.2-.5-.3z"/></svg></a>
+
+<script>
+const WA="447823930527";
+const SECTIONS=[
+ {id:"packages",title:"Food Packages",img:"img/celebration.jpg",alt:"Jollof spaghetti, chicken and beans with agoyin sauce",blurb:"Complete party trays, ready to serve.",items:[
+   {id:"celebration",name:"The Ultimate Celebration Tray",incl:["Smokey jollof rice","Fried rice","Beans + agoyin sauce & plantain","Gizdodo","Jollof spaghetti","4 chicken","2 hake fish","2 fruit parfaits","2 shawarma","Box of grapes","Chocolate","Drink"],opts:[["Tray",190]]}
+ ]},
+ {id:"special",title:"Specialized Dishes",img:"img/dishes.jpg",alt:"Bowls of jollof rice, grilled chicken and ofada rice",blurb:"Signature plates and party dishes.",items:[
+   {id:"goatjollof",name:"Goat Meat Jollof or Suya Rice with Plantain",opts:[["Goat meat jollof",15.5],["Suya rice",15.5]]},
+   {id:"friedrice",name:"Special Fried Rice with Plantain & Turkey",opts:[["Plate",15.5]]},
+   {id:"coconut",name:"Coconut Rice with Plantain & Hake Fish",opts:[["Plate",18.5]]},
+   {id:"spaghetti",name:"Jollof Spaghetti & Turkey",opts:[["Plate",15.5]]},
+   {id:"seafood",name:"Luxury Seafood Pasta",opts:[["Order",70]]},
+   {id:"moimoi",name:"Moi-Moi",desc:"4 plantain leaves",opts:[["Order",35]]},
+   {id:"bbq",name:"3 Barbecue + Peppered Sauce",opts:[["Order",55]]}
+ ]},
+ {id:"signature",title:"Signature Box",img:"img/trays.jpg",alt:"Trays of stew, egusi, jollof and fried rice",blurb:"Our sauces and peppered favourites by the box.",items:[
+   {id:"agoyin",name:"Agoyin Sauce",opts:[["Box",75]]},
+   {id:"ofada",name:"Ofada Sauce",opts:[["Box",75]]},
+   {id:"gizdodo",name:"Gizdodo",opts:[["Box",80]]},
+   {id:"snail",name:"Peppered Snail & Cowskin",opts:[["Box",85]]},
+   {id:"turkey",name:"Peppered Turkey",opts:[["Box",45]]}
+ ]},
+ {id:"savory",title:"Savory Pastries",img:"img/pies.jpg",alt:"Freshly baked meat pies",blurb:"Single pieces or a Pleasure Box of 10.",items:[
+   {id:"meatpie",name:"Meat Pie",desc:"Golden crust, minced beef/chicken filling, mildly spiced.",opts:[["Each",2.5],["Pleasure Box (10)",25]]},
+   {id:"samosa",name:"Samosa",desc:"Crispy pastry, seasoned beef or chicken filling.",opts:[["Each",2],["Pleasure Box (10)",10]]},
+   {id:"springroll",name:"Spring Rolls",desc:"Crunchy roll with mixed vegetables/chicken.",opts:[["Each",2],["Pleasure Box (10)",10]]},
+   {id:"eggroll",name:"Egg Roll",desc:"Boiled egg wrapped in flaky dough.",opts:[["Each",2.5],["Pleasure Box (10)",25]]},
+   {id:"fishroll",name:"Baked Fish Roll",desc:"Soft roll with spiced fish filling.",opts:[["Each",2.5],["Pleasure Box (10)",25]]}
+ ]},
+ {id:"sweet",title:"Sweet & Fried Treats",img:"img/chinchin.jpg",alt:"Tubs of chin chin",blurb:"Soft, sweet and crunchy, freshly made.",items:[
+   {id:"puffpuff",name:"Puff Puff",desc:"Soft, sweet dough balls.",opts:[["Each",1],["10 for £10",10]]},
+   {id:"chinchin",name:"Chin Chin",desc:"Crunchy sweet bites.",opts:[["Small",2],["1.5L tub",6]]},
+   {id:"buns",name:"Buns",desc:"Lightly sweet, deep-fried snack.",opts:[["Each",1],["Pleasure Box",10]]}
+ ]},
+ {id:"cakes",title:"Cakes & Bakes",img:"img/cake.jpg",alt:"White birthday cake with gold crown topper",img2:"img/cupcakes.jpg",alt2:"Cupcakes with white frosting on a cake stand",blurb:"Cupcakes, banana bread and custom celebration cakes.",items:[
+   {id:"cupcake",name:"Cupcakes",desc:"Moist sponge with buttercream frosting.",opts:[["Each",3]]},
+   {id:"banana",name:"Banana Bread",desc:"Freshly baked, soft, with your preferred choice of toppings.",opts:[["Each",4]]},
+   {id:"cake",name:"Birthday & Celebration Cakes",desc:"Custom cakes for birthdays and special occasions.",ask:true}
+ ]}
+];
+const PHOTOS={celebration:"img/celebration.jpg",meatpie:"img/pies.jpg",puffpuff:"img/puffpuff.jpg",chinchin:"img/chinchin.jpg",banana:"img/bananabread.jpg",cake:"img/cake.jpg",springroll:"img/smallchops.jpg",samosa:"img/smallchops.jpg"};
+const ITEMS={};SECTIONS.forEach(s=>s.items.forEach(i=>ITEMS[i.id]=i));
+const $=s=>document.querySelector(s);
+const gbp=n=>"£"+n.toFixed(2);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let cart={};
+try{cart=JSON.parse(localStorage.getItem("md-cart-gbp")||"{}")||{}}catch(e){cart={}}
+const save=()=>{try{localStorage.setItem("md-cart-gbp",JSON.stringify(cart))}catch(e){}};
+const keyOf=(id,o)=>id+"|"+o;
+const parse=k=>{const [id,o]=k.split("|");const it=ITEMS[id];return it&&it.opts&&it.opts[+o]?{it,opt:it.opts[+o]}:null};
+
+// Build menu
+SECTIONS.forEach(s=>{
+  const c=document.createElement("button");c.className="chip";c.dataset.sec=s.id;c.textContent=s.title;c.onclick=()=>document.getElementById("sec-"+s.id).scrollIntoView({behavior:"smooth"});$("#menuNav").appendChild(c);
+  const sec=document.createElement("section");sec.className="menu-sec";sec.id="sec-"+s.id;
+  const pic=s.img2?`<figure><img src="${s.img}" alt="${esc(s.alt)}" loading="lazy"><img src="${s.img2}" alt="${esc(s.alt2)}" loading="lazy"></figure>`:`<img src="${s.img}" alt="${esc(s.alt)}" loading="lazy">`;
+  sec.innerHTML=`<div class="banner">${pic}<div><h2>${s.title}</h2><p>${s.blurb}</p></div></div><div class="items"></div>`;
+  const box=sec.querySelector(".items");
+  s.items.forEach(it=>{
+    const d=document.createElement("div");d.className="item";d.dataset.search=(it.name+" "+(it.desc||"")+" "+(it.incl||[]).join(" ")+" "+s.title).toLowerCase();
+    const ph=PHOTOS[it.id];
+    let h=ph?`<img class="thumb" src="${ph}" alt="${esc(it.name)}" loading="lazy">`:`<img class="thumb ph" src="img/logo.png" alt="" loading="lazy">`;
+    h+=`<div class="body"><h3>${esc(it.name)}</h3>`;
+    if(it.desc)h+=`<p>${esc(it.desc)}</p>`;
+    if(it.incl)h+=`<div class="incl">${it.incl.map(x=>`<span>${esc(x)}</span>`).join("")}</div>`;
+    h+=`<div class="opts">`;
+    if(it.ask){h+=`<a class="opt ask" href="https://wa.me/${WA}?text=${encodeURIComponent("Hello Maisha Delish, I'd like a quote for a custom cake.")}" target="_blank" rel="noopener">Ask for a quote on WhatsApp</a>`}
+    else it.opts.forEach((o,i)=>{h+=`<button class="opt" data-add="${it.id}" data-opt="${i}">${esc(o[0])} <b>${gbp(o[1])}</b></button>`});
+    d.innerHTML=h+`</div></div>`;box.appendChild(d);
+  });
+  $("#menuBody").appendChild(sec);
+});
+
+function count(){return Object.values(cart).reduce((a,b)=>a+b,0)}
+function subtotal(){return Object.entries(cart).reduce((s,[k,q])=>{const p=parse(k);return s+(p?p.opt[1]*q:0)},0)}
+function renderCart(){
+  Object.keys(cart).forEach(k=>{if(!parse(k))delete cart[k]});
+  const n=count();
+  $("#cartCount").textContent=n;
+  $("#cartbarCount").textContent=n+(n===1?" item":" items");
+  $("#cartbarTotal").textContent=gbp(subtotal());
+  document.body.classList.toggle("has-items",n>0);
+  document.querySelectorAll(".opt[data-add]").forEach(b=>{const q=cart[keyOf(b.dataset.add,b.dataset.opt||0)]||0;let s=b.querySelector(".n");if(q){if(!s){s=document.createElement("span");s.className="n";b.appendChild(s)}s.textContent=q;s.setAttribute("aria-label",q+" in cart")}else if(s)s.remove()});
+  const L=$("#lines");L.innerHTML="";
+  const ks=Object.keys(cart);
+  if(!ks.length)L.innerHTML='<div class="empty"><p>Your cart is empty.</p><a class="btn green" href="#menu" data-go="menu">Browse Our Menu</a></div>';
+  ks.forEach(k=>{const p=parse(k);
+    const d=document.createElement("div");d.className="line";
+    d.innerHTML=`<div><b>${esc(p.it.name)}</b><small>${esc(p.opt[0])} · ${gbp(p.opt[1])}</small></div>
+    <div class="qty"><button aria-label="Remove one" data-dec="${k}">−</button><span>${cart[k]}</span><button aria-label="Add one" data-inc="${k}">+</button></div>
+    <b style="font-variant-numeric:tabular-nums">${gbp(p.opt[1]*cart[k])}</b>`;L.appendChild(d)});
+  $("#subtotal").textContent=gbp(subtotal());
+  renderSummary();save();
+}
+function renderSummary(){
+  const ks=Object.keys(cart),s=$("#poSummary");
+  if(!ks.length){s.innerHTML='<div class="po-empty"><b>Your cart is empty</b><p class="note">Add meals, pastries or treats first, then come back here to send your order.</p><a class="btn green" href="#menu" data-go="menu">Browse Our Menu</a></div>';return}
+  s.innerHTML=ks.map(k=>{const p=parse(k);return `<div style="display:flex;justify-content:space-between;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)"><span>${cart[k]} × ${esc(p.it.name)} <span class="note">(${esc(p.opt[0])})</span></span><b style="font-variant-numeric:tabular-nums;white-space:nowrap">${gbp(p.opt[1]*cart[k])}</b></div>`}).join("")+
+  `<div class="tot" style="margin-top:12px"><span>Subtotal</span><span>${gbp(subtotal())}</span></div><p class="note" style="margin-top:4px">Delivery cost is confirmed based on your location.</p>`;
+}
+let tt;function toast(t){const e=$("#toast");e.textContent=t;e.hidden=false;clearTimeout(tt);tt=setTimeout(()=>e.hidden=true,1800)}
+
+function copyText(txt,el){
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(()=>toast("Copied")).catch(()=>sel(el))}else sel(el);
+}
+function sel(el){if(!el)return;const r=document.createRange();r.selectNodeContents(el);const s=getSelection();s.removeAllRanges();s.addRange(r);toast("Selected. Press copy on your device.")}
+
+document.addEventListener("click",e=>{
+  const a=e.target.closest("[data-add]");
+  if(a){const k=keyOf(a.dataset.add,a.dataset.opt||0);cart[k]=(cart[k]||0)+1;renderCart();a.classList.add("done");setTimeout(()=>a.classList.remove("done"),900);toast(ITEMS[a.dataset.add].name+" added to cart");return}
+  const inc=e.target.closest("[data-inc]");if(inc){cart[inc.dataset.inc]++;renderCart();return}
+  const dec=e.target.closest("[data-dec]");if(dec){const k=dec.dataset.dec;cart[k]--;if(cart[k]<=0)delete cart[k];renderCart();return}
+  const sc=e.target.closest("[data-scroll]");if(sc){e.preventDefault();document.getElementById(sc.dataset.scroll).scrollIntoView({behavior:"smooth"});return}
+  const go=e.target.closest("[data-go]");if(go){e.preventDefault();show(go.dataset.go);closeCart();if(go.dataset.jump)setTimeout(()=>document.getElementById("sec-"+go.dataset.jump).scrollIntoView(),30);return}
+  const cp=e.target.closest("[data-copy]");if(cp){const el=document.getElementById(cp.dataset.copy);copyText(el.textContent,el);return}
+  const cpm=e.target.closest("[data-copymsg]");if(cpm){const el=document.getElementById(cpm.dataset.copymsg);copyText(el.textContent,el)}
+});
+let lastFocus=null;
+function openCart(){lastFocus=document.activeElement;$("#drawer").hidden=false;$("#scrim").hidden=false;document.body.style.overflow="hidden";$("#closeCart").focus()}
+function closeCart(){if($("#drawer").hidden)return;$("#drawer").hidden=true;$("#scrim").hidden=true;document.body.style.overflow="";if(lastFocus&&lastFocus.focus)lastFocus.focus()}
+$("#cartbarBtn").onclick=openCart;
+$("#cartBtn").onclick=openCart;$("#closeCart").onclick=closeCart;$("#scrim").onclick=closeCart;
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeCart()});
+
+const VIEWS=["home","about","catering","menu","preorder"];
+function show(v){
+  if(!VIEWS.includes(v))v="home";
+  VIEWS.forEach(x=>$("#v-"+x).classList.toggle("on",x===v));
+  document.querySelectorAll("nav.main a").forEach(a=>{if(a.dataset.go===v)a.setAttribute("aria-current","page");else a.removeAttribute("aria-current")});
+  try{history.replaceState(null,"","#"+v)}catch(e){}
+  window.scrollTo(0,0);
+}
+
+function check(form){let first=null;form.querySelectorAll("[required]").forEach(i=>{const bad=!i.value.trim();i.setAttribute("aria-invalid",bad);let m=i.parentElement.querySelector(".field-err");if(bad){if(!m){m=document.createElement("span");m.className="field-err";i.parentElement.appendChild(m)}m.textContent="Please fill this in";if(!first)first=i}else if(m)m.remove()});if(first)first.focus();return !first}
+document.querySelectorAll("form.card [required]").forEach(i=>i.addEventListener("input",()=>{if(i.value.trim()){i.removeAttribute("aria-invalid");const m=i.parentElement.querySelector(".field-err");if(m)m.remove()}}));
+(()=>{const t=new Date();const iso=new Date(t.getTime()-t.getTimezoneOffset()*6e4).toISOString().slice(0,10);["c-date","p-date"].forEach(id=>document.getElementById(id).min=iso)})();
+// Header height drives sticky offsets
+const hdr=document.querySelector("header.site");
+const setHdr=()=>document.documentElement.style.setProperty("--hdr",hdr.offsetHeight+"px");
+setHdr();try{new ResizeObserver(setHdr).observe(hdr)}catch(e){window.addEventListener("resize",setHdr)}
+// Menu search
+$("#menuSearch").addEventListener("input",e=>{
+  const q=e.target.value.trim().toLowerCase();let any=false;
+  document.querySelectorAll(".menu-sec").forEach(sec=>{let vis=0;sec.querySelectorAll(".item").forEach(it=>{const ok=!q||it.dataset.search.includes(q);it.hidden=!ok;if(ok)vis++});sec.hidden=!vis;if(vis)any=true});
+  $("#noResults").hidden=any;
+  const top=$("#menuBody").getBoundingClientRect().top+window.scrollY-(hdr.offsetHeight+$(".menu-nav").offsetHeight)-8;
+  if(window.scrollY>top)window.scrollTo(0,Math.max(0,top));
+});
+// Highlight the section in view
+try{const io=new IntersectionObserver(es=>{es.forEach(en=>{if(en.isIntersecting){const id=en.target.id.slice(4);document.querySelectorAll("#menuNav .chip").forEach(c=>c.classList.toggle("on",c.dataset.sec===id))}})},{rootMargin:"-45% 0px -50% 0px"});document.querySelectorAll(".menu-sec").forEach(s=>io.observe(s))}catch(e){}
+function readyBox(box,title,msg,id){
+  box.hidden=false;
+  box.innerHTML=`<b>${title}</b><pre id="${id}">${esc(msg)}</pre>
+  <div class="row"><a class="btn wa" href="https://wa.me/${WA}?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener">Send on WhatsApp</a>
+  <button type="button" class="btn ghost" style="color:var(--heading)" data-copymsg="${id}">Copy message</button></div>
+  <p class="note">Or email it to maishadelish@gmail.com. Your order is confirmed once Maisha Delish replies.</p>`;
+}
+const v=id=>document.getElementById(id).value.trim();
+$("#caterForm").addEventListener("submit",e=>{e.preventDefault();const d=$("#caterDone");
+  if(!check(e.target)){d.hidden=false;d.innerHTML='<p class="err">Please fill in your name, phone, event date and number of guests.</p>';return}
+  const msg=`Hello Maisha Delish, I'd like a catering quote.
+Name: ${v("c-name")}
+Phone: ${v("c-phone")}
+Event: ${v("c-type")} on ${v("c-date")}
+Guests: ${v("c-guests")}
+Service: ${v("c-svc")}
+Venue: ${v("c-venue")||"-"}
+Notes: ${v("c-notes")||"-"}`;
+  readyBox(d,"Your request is ready to send",msg,"caterMsg");
+});
+$("#poForm").addEventListener("submit",e=>{e.preventDefault();const d=$("#poDone");
+  if(!Object.keys(cart).length){d.hidden=false;d.innerHTML='<p class="err">Your cart is empty. Add items from Our Menu first.</p>';return}
+  if(!check(e.target)){d.hidden=false;d.innerHTML='<p class="err">Please fill in your name and phone number.</p>';return}
+  const items=Object.keys(cart).map(k=>{const p=parse(k);return `${cart[k]} x ${p.it.name} (${p.opt[0]}) - ${gbp(p.opt[1]*cart[k])}`}).join("\n");
+  const msg=`Hello Maisha Delish, I'd like to pre-order:
+${items}
+Subtotal: ${gbp(subtotal())}
+${v("p-mode")}${v("p-date")?" on "+v("p-date"):""}${v("p-mode")==="Delivery"?"\nAddress: "+(v("p-addr")||"-"):""}
+Name: ${v("p-name")}
+Phone: ${v("p-phone")}
+Notes: ${v("p-notes")||"-"}`;
+  readyBox(d,"Your order is ready to send",msg,"poMsg");
+});
+
+renderCart();
+show((location.hash||"#home").slice(1));
+window.addEventListener("hashchange",()=>{const h=location.hash.slice(1);if(VIEWS.includes(h))show(h)});
+</script>
+
+</body>
+</html>
