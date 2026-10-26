@@ -3,8 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0a3520">
 <meta name="description" content="Maisha Delish: premium Nigerian catering, cooked meals, pastries, drinks and sweet baked goods. Order on WhatsApp 07823930527.">
 <link rel="icon" href="img/logo.png">
+<link rel="apple-touch-icon" href="img/logo.png">
 <title>Maisha Delish</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -317,6 +319,34 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:#c0341d;box-
   .cta-band .wrap{flex-direction:column;align-items:flex-start}
 }
 @media (max-width:420px){.brand small{display:none}}
+
+/* Mobile polish */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+a,button{-webkit-tap-highlight-color:rgba(246,179,34,.25);touch-action:manipulation}
+input,select,textarea{font-size:16px}
+.copy{min-height:36px;padding:6px 12px;font-size:13px;vertical-align:middle}
+.social a{min-height:44px;display:inline-flex;align-items:center;padding:8px 16px}
+footer.site p{display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px}
+@media (max-width:700px){
+  nav.main .wrap{justify-content:space-between;gap:0;padding-left:max(8px,env(safe-area-inset-left,0px));padding-right:max(8px,env(safe-area-inset-right,0px))}
+  nav.main a{font-size:clamp(12.5px,3.7vw,15px);padding:12px clamp(4px,1.4vw,8px)}
+  .wa-fab{width:50px;height:50px;right:calc(14px + env(safe-area-inset-right,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px))}
+  .wa-fab svg{width:26px;height:26px}
+  body.has-items .wa-fab{bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+  .steps{grid-template-columns:1fr 1fr;gap:14px;padding-block:24px}
+  .step p{font-size:14px}
+  .hero .wrap{padding-block:44px 40px}
+  .page-band .wrap{padding-block:24px}
+  .services,.story,.feature,.how,.form-sec,.about{padding-block:40px}
+  .favs{padding-block:0 40px}
+  .hero .ctas .btn{flex:1 1 150px}
+  form.card{padding:18px}
+  .drawer .line{grid-template-columns:1fr auto;row-gap:8px}
+  .drawer .line > b{grid-column:2;justify-self:end}
+  .drawer .line .qty{grid-column:1;grid-row:2;justify-self:start}
+  .qty button{width:40px;height:40px}
+}
+@media (max-width:560px) and (min-width:421px){header.site .brand small{font-size:11px}}
 @media (prefers-reduced-motion: reduce){.drawer:not([hidden]),.scrim:not([hidden]){animation:none}.fav:hover,.fav:hover img{transform:none}}
 
 @media (max-width:900px){
@@ -340,7 +370,7 @@ input[aria-invalid="true"],select[aria-invalid="true"]{border-color:#c0341d;box-
 }
 @media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 </style>
-<style>body{margin:0}</style>
+<style>body{margin:0}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
 </head>
 <body>
 
