@@ -729,8 +729,8 @@ const SECTIONS=[
    {id:"cake",name:"Birthday & Celebration Cakes",desc:"Custom cakes for birthdays and special occasions.",ask:true}
  ]}
 ];
-const PHOTOS={celebration:"img/celebration.jpg",meatpie:"img/pies.jpg",puffpuff:"img/puffpuff.jpg",chinchin:"img/chinchin.jpg",banana:"img/bananabread.jpg",cake:"img/cake.jpg",springroll:"img/smallchops.jpg",samosa:"img/smallchops.jpg",cupcake:"img/cupcakes-daisy.jpg",coconut:"img/coconut-rice-fish.jpg",seafood:"img/seafood-pasta.jpg",bbq:"img/bbq-chicken.jpg"};
-const STOCK=new Set(["cupcake","coconut","seafood","bbq"]);
+const PHOTOS={celebration:"img/celebration.jpg",meatpie:"img/pies.jpg",puffpuff:"img/puffpuff.jpg",chinchin:"img/chinchin.jpg",banana:"img/bananabread.jpg",cake:"img/cake.jpg",springroll:"img/smallchops.jpg",samosa:"img/smallchops.jpg",cupcake:"img/cupcakes-daisy.jpg",coconut:"img/coconut-rice-fish.jpg",seafood:"img/seafood-pasta.jpg",bbq:"img/bbq-chicken.jpg",spaghetti:"img/spaghetti.jpg",gizdodo:"img/gizdodo.jpg",agoyin:"img/agoyin.jpg"};
+const STOCK=new Set(["cupcake","coconut","seafood","bbq","spaghetti","gizdodo","agoyin"]);
 const ITEMS={};SECTIONS.forEach(s=>s.items.forEach(i=>ITEMS[i.id]=i));
 const $=s=>document.querySelector(s);
 const gbp=n=>"£"+n.toFixed(2);
