@@ -290,6 +290,7 @@ footer.site{border-top:4px solid var(--orange)}
 .item .body .incl,.item .body .opts{grid-column:auto}
 .opt .n{background:#fff;color:var(--green-deep);border-radius:999px;min-width:22px;height:22px;display:inline-grid;place-items:center;font-size:12px;font-weight:800;padding:0 6px}
 .no-results{padding:50px 0;color:var(--muted);text-align:center}
+.illus{font-size:12px;color:var(--muted);font-style:italic}
 
 /* Cart drawer + bars */
 @keyframes slideIn{from{transform:translateX(100%)}to{transform:none}}
@@ -728,7 +729,8 @@ const SECTIONS=[
    {id:"cake",name:"Birthday & Celebration Cakes",desc:"Custom cakes for birthdays and special occasions.",ask:true}
  ]}
 ];
-const PHOTOS={celebration:"img/celebration.jpg",meatpie:"img/pies.jpg",puffpuff:"img/puffpuff.jpg",chinchin:"img/chinchin.jpg",banana:"img/bananabread.jpg",cake:"img/cake.jpg",springroll:"img/smallchops.jpg",samosa:"img/smallchops.jpg"};
+const PHOTOS={celebration:"img/celebration.jpg",meatpie:"img/pies.jpg",puffpuff:"img/puffpuff.jpg",chinchin:"img/chinchin.jpg",banana:"img/bananabread.jpg",cake:"img/cake.jpg",springroll:"img/smallchops.jpg",samosa:"img/smallchops.jpg",cupcake:"img/cupcakes-daisy.jpg",coconut:"img/coconut-rice-fish.jpg",seafood:"img/seafood-pasta.jpg",bbq:"img/bbq-chicken.jpg"};
+const STOCK=new Set(["cupcake","coconut","seafood","bbq"]);
 const ITEMS={};SECTIONS.forEach(s=>s.items.forEach(i=>ITEMS[i.id]=i));
 const $=s=>document.querySelector(s);
 const gbp=n=>"£"+n.toFixed(2);
@@ -752,6 +754,7 @@ SECTIONS.forEach(s=>{
     let h=ph?`<img class="thumb" src="${ph}" alt="${esc(it.name)}" loading="lazy">`:`<img class="thumb ph" src="img/logo.png" alt="" loading="lazy">`;
     h+=`<div class="body"><h3>${esc(it.name)}</h3>`;
     if(it.desc)h+=`<p>${esc(it.desc)}</p>`;
+    if(STOCK.has(it.id))h+=`<small class="illus">Photo for illustration</small>`;
     if(it.incl)h+=`<div class="incl">${it.incl.map(x=>`<span>${esc(x)}</span>`).join("")}</div>`;
     h+=`<div class="opts">`;
     if(it.ask){h+=`<a class="opt ask" href="https://wa.me/${WA}?text=${encodeURIComponent("Hello Maisha Delish, I'd like a quote for a custom cake.")}" target="_blank" rel="noopener">Ask for a quote on WhatsApp</a>`}
