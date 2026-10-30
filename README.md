@@ -1,6 +1,6 @@
 # Maisha Delish website
 
-Live at https://maishadelish.uk (also https://maisha-delish.vercel.app)
+Live at https://www.maishadelish.uk (also https://maisha-delish.vercel.app)
 
 Website for Maisha Delish: Catering · Food · Drinks · Sweet Baked Goods. Serving premium with passion.
 
