@@ -300,6 +300,34 @@ footer.site{border-top:4px solid var(--orange)}
 .no-results{padding:50px 0;color:var(--muted);text-align:center}
 .illus{font-size:12px;color:var(--muted);font-style:italic}
 
+/* About: story, purpose/mission/vision, FAQ */
+.about .wrap{align-items:start}
+@media (min-width:901px){.about .pic{position:sticky;top:calc(var(--hdr) + 24px)}}
+.story-text p{margin-top:14px;max-width:62ch}
+.story-text strong{color:var(--heading)}
+.legacy{margin:26px 0 8px;padding:18px 22px;border-left:5px solid var(--orange);background:var(--surface);border-radius:0 16px 16px 0;font-family:var(--f-display);font-size:clamp(20px,2.6vw,26px);line-height:1.3;color:var(--heading)}
+.legacy span{display:block;font-family:var(--f-body);font-size:15px;font-weight:600;color:var(--muted);margin-bottom:6px}
+.story-text .closing{font-weight:600;color:var(--heading);margin-top:18px}
+.pmv{background:var(--swirl),var(--green-deep);color:#fff;padding-block:56px}
+.pmv h2{font-family:var(--f-display);font-weight:400;color:var(--gold);font-size:clamp(28px,4vw,40px);margin-bottom:22px}
+.pmv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.pmv-card{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:20px;padding:24px;display:grid;gap:10px;align-content:start}
+.pmv-label{font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.pmv-short{font-family:var(--f-display);font-size:22px;line-height:1.25;color:#fff}
+.pmv-card p:not(.pmv-short){color:#d9e9dd;font-size:15px}
+.faq{padding-block:56px;scroll-margin-top:calc(env(safe-area-inset-top,0px) + var(--hdr) + 12px)}
+.faq-list{display:grid;gap:12px;max-width:820px}
+.faq details{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.faq summary{cursor:pointer;list-style:none;padding:18px 54px 18px 20px;font-weight:700;font-size:16px;position:relative;color:var(--fg);min-height:44px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:18px;top:50%;transform:translateY(-50%);width:28px;height:28px;border-radius:50%;background:var(--surface);color:var(--heading);display:grid;place-items:center;font-size:20px;font-weight:600;line-height:1}
+.faq details[open] summary::after{content:"−";background:var(--gold);color:var(--on-orange)}
+.faq details[open] summary{color:var(--heading)}
+.faq details > div{padding:0 20px 18px;color:var(--muted);display:grid;gap:10px}
+.faq details ul{margin:0;padding-left:20px;color:var(--fg)}
+.faq-link{color:var(--heading);font-weight:700}
+@media (max-width:900px){.pmv-grid{grid-template-columns:1fr}.pmv,.faq{padding-block:40px}.about .pic img.main{aspect-ratio:4/3}}
+
 /* Cart drawer + bars */
 @keyframes slideIn{from{transform:translateX(100%)}to{transform:none}}
 @keyframes fadeIn{from{opacity:0}to{opacity:1}}
@@ -435,8 +463,8 @@ footer.site p{display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px}
       <div class="wrap">
         <div>
           <h2>Our Story</h2>
-          <p>Maisha Delish specializes in premium cooked meals, pastries and drinks. From smoky jollof and peppered sauces to fresh meat pies, puff puff and chin chin, everything is made with care and served with passion.</p>
-          <p>We cater weddings, birthdays, corporate events and festive celebrations, and we prepare food trays, food packages and weekly meal prep for families.</p>
+          <p>Maisha Delish was born from a lifelong dream, one that began the moment Aisha first stepped into a kitchen. The name means <strong>“My Aisha, Delicious”</strong>: a celebration of the flavours, memories and experiences inspired by her passion for food.</p>
+          <p>That passion grew into a desire to serve communities, cater events and deliver meals across the UK that leave every customer feeling valued, satisfied and cared for.</p>
           <div style="margin-top:22px;display:flex;gap:12px;flex-wrap:wrap"><a class="btn gold" href="#about" data-go="about">Read more</a></div>
         </div>
         <div class="collage">
@@ -513,17 +541,21 @@ footer.site p{display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px}
 
   <!-- ABOUT -->
   <div class="view" id="v-about">
-    <div class="page-band"><div class="wrap"><h1>About us</h1><p>Serving premium with passion</p></div></div>
+    <div class="page-band"><div class="wrap"><h1>About us</h1><p>A place to eat, celebrate, enjoy and belong</p></div></div>
     <section class="about">
       <div class="wrap">
         <div class="pic">
           <img class="main" src="img/trays.jpg" alt="Trays of jollof rice, fried rice, egusi and stew">
           <img class="badge-logo" src="img/logo.png" alt="">
         </div>
-        <div>
-          <h2>Premium meals, pastries &amp; drinks</h2>
-          <p>Maisha Delish is a Nigerian food business serving premium cooked meals, savory pastries, sweet treats, cakes and drinks. We cook for families, parties and businesses, and we bring the same care to a single meat pie as to a full event.</p>
-          <p>Our trays of jollof rice, fried rice, egusi and stews are made fresh to order. Our pastries are freshly baked daily and packed in hygienically sealed packaging.</p>
+        <div class="story-text">
+          <h2>Our Story</h2>
+          <p>Maisha Delish was born from a lifelong dream, one that began the moment Aisha first stepped into a kitchen. Cooking wasn’t just a hobby; it was a calling. A way to express love, culture and creativity. The name Maisha Delish is a tribute to this journey, meaning <strong>“My Aisha, Delicious”</strong>: a celebration of the flavours, memories and experiences inspired by Aisha’s passion for food.</p>
+          <p>From experimenting with recipes to mastering the art of flavour, Aisha discovered more than just skill; she found a purpose. Every dish became an opportunity to connect with people, to bring joy and to create unforgettable moments. Over time, this passion grew into something bigger: a desire to serve communities, cater events and deliver meals that leave customers feeling valued, satisfied and cared for.</p>
+          <blockquote class="legacy"><span>But Maisha Delish is more than a food business.</span> It is a dream of legacy.</blockquote>
+          <p>Aisha envisions a warm, welcoming space where people can gather to eat, celebrate and create beautiful memories, whether it’s a quiet meal with family, a milestone celebration or a simple moment of comfort shared over delicious food. Maisha Delish aims to be a place where food brings people together and where every customer feels at home.</p>
+          <p>Built on love, dedication and an unwavering commitment to quality, Maisha Delish strives to offer more than meals. It offers experiences: flavourful, heartfelt and unforgettable.</p>
+          <p class="closing">Maisha Delish is a place to eat, celebrate, enjoy and belong.<br>This is not just the start of a business. It is the beginning of a lasting legacy.</p>
           <ul class="svc-list" aria-label="Our services">
             <li>Event Catering</li><li>Corporate Catering</li><li>Menu Service</li><li>Food Packages</li><li>Custom orders for events</li><li>Weekly meal prep</li><li>Festive meals</li><li>Food Trays</li>
           </ul>
@@ -531,6 +563,66 @@ footer.site p{display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px}
             <a class="btn green" href="#menu" data-go="menu">See our menu</a>
             <a class="btn ghost" href="#catering" data-go="catering" style="color:var(--heading)">Book catering</a>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pmv">
+      <div class="wrap">
+        <h2>What we stand for</h2>
+        <div class="pmv-grid">
+          <article class="pmv-card">
+            <span class="pmv-label">Purpose</span>
+            <p class="pmv-short">Luxury that makes life sweeter.</p>
+            <p>To sweeten life’s moments through luxurious flavours that bring joy, comfort and indulgence to everyone.</p>
+          </article>
+          <article class="pmv-card">
+            <span class="pmv-label">Mission</span>
+            <p class="pmv-short">Premium, crafted, welcoming.</p>
+            <p>To create premium baked goods and drinks using high-quality ingredients, refined techniques and inspired flavours, delivering indulgent experiences that feel special, yet welcoming to all.</p>
+          </article>
+          <article class="pmv-card">
+            <span class="pmv-label">Vision</span>
+            <p class="pmv-short">Everyday moments, elegant celebrations.</p>
+            <p>To become a beloved luxury food brand known for turning everyday moments into elegant celebrations, where every bite and sip reflects the beauty of life.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq" id="sec-faq">
+      <div class="wrap">
+        <div class="sec-head"><h2>Frequently asked questions</h2></div>
+        <div class="faq-list">
+          <details open>
+            <summary>What services do you offer and where are you located?</summary>
+            <div><p>Maisha Delish creates premium baked goods and drinks using high-quality ingredients, refined techniques and inspired flavours. Our goal is to deliver indulgent experiences that feel special, while remaining warm and welcoming to everyone.</p><p>We are based in the UK and provide our services across the UK.</p></div>
+          </details>
+          <details>
+            <summary>Do you accept bulk orders?</summary>
+            <div><p>Yes, we accept bulk orders. Whether you’re ordering for a celebration, corporate event, special occasion or other gathering, we can accommodate larger orders with advance notice.</p></div>
+          </details>
+          <details>
+            <summary>Are your services only available where you are based, or anywhere in the UK?</summary>
+            <div><p>Our services are available across the UK. We are not limited to our local area and can cater to customers and events in different parts of the UK, subject to the specific requirements of the order.</p></div>
+          </details>
+          <details>
+            <summary>Do you offer catering, and what type of catering do you provide?</summary>
+            <div><p>Yes, Maisha Delish offers catering for a variety of occasions and needs, including:</p>
+            <ul><li>Event Catering</li><li>Corporate Catering</li><li>Menu Services</li><li>Food Packages</li><li>Weekly Meal Prep</li><li>Festive Meals</li><li>Food Trays</li></ul>
+            <p>We aim to provide delicious, beautifully prepared food tailored to the needs of each client and occasion.</p>
+            <p><a class="faq-link" href="#catering" data-go="catering">Request a catering quote →</a></p></div>
+          </details>
+          <details>
+            <summary>Are any of your services available by pre-order?</summary>
+            <div><p>Yes. Most of our services operate primarily on a pre-order basis due to the nature of our food production. Pre-ordering allows us to maintain the quality, freshness and presentation of every order.</p>
+            <p><a class="faq-link" href="#preorder" data-go="preorder">Place a pre-order →</a></p></div>
+          </details>
+          <details>
+            <summary>Do you deliver nationwide?</summary>
+            <div><p>Yes, we offer delivery within the UK. However, delivery availability and arrangements may vary depending on the location, type and size of the order. Please contact us in advance to discuss your delivery requirements.</p>
+            <p><a class="faq-link" href="https://wa.me/447823930527" target="_blank" rel="noopener">Ask us on WhatsApp →</a></p></div>
+          </details>
         </div>
       </div>
     </section>
@@ -673,13 +765,14 @@ footer.site p{display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px}
       <div>
         <h4>Follow us</h4>
         <p>@maisha_delish</p>
+        <p><a href="#about" data-go="about" data-jump="faq">Frequently asked questions</a></p>
         <div class="social">
           <a href="https://www.instagram.com/maisha_delish" target="_blank" rel="noopener">Instagram</a>
           <a href="https://www.tiktok.com/@maisha_delish" target="_blank" rel="noopener">TikTok</a>
         </div>
       </div>
     </div>
-    <p class="fine">© 2026 Maisha Delish. Delivery available at additional cost based on location.</p>
+    <p class="fine">© 2026 Maisha Delish. Based in the UK, serving customers across the UK. Delivery available at additional cost based on location.</p>
   </div>
 </footer>
 
