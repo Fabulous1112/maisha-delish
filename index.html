@@ -15,6 +15,13 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="img/logo.png">
 <link rel="apple-touch-icon" href="img/logo.png">
+<!-- Google Analytics 4 with consent: nothing loads until the visitor accepts -->
+<script>
+window.GA_ID="G-S6GMC2BX9L";
+window.dataLayer=window.dataLayer||[];
+function gtag(){dataLayer.push(arguments);}
+gtag('consent','default',{ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied',analytics_storage:'denied'});
+</script>
 <title>Maisha Delish</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -766,6 +773,7 @@ footer.site p{display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px}
         <h4>Follow us</h4>
         <p>@maisha_delish</p>
         <p><a href="#about" data-go="about" data-jump="faq">Frequently asked questions</a></p>
+        <p><button type="button" class="cookie-link" onclick="openCookieSettings()">Cookie settings</button></p>
         <div class="social">
           <a href="https://www.instagram.com/maisha_delish" target="_blank" rel="noopener">Instagram</a>
           <a href="https://www.tiktok.com/@maisha_delish" target="_blank" rel="noopener">TikTok</a>
@@ -981,5 +989,63 @@ show((location.hash||"#home").slice(1));
 window.addEventListener("hashchange",()=>{const h=location.hash.slice(1);if(VIEWS.includes(h))show(h)});
 </script>
 
+<style>
+.cookie{position:fixed;left:0;right:0;bottom:0;z-index:35;padding:0 max(12px,env(safe-area-inset-right,0px)) calc(12px + env(safe-area-inset-bottom,0px)) max(12px,env(safe-area-inset-left,0px));pointer-events:none}
+.cookie-box{pointer-events:auto;max-width:760px;margin:0 auto;background:var(--green-deep);color:#e4f0e7;border:1px solid rgba(255,255,255,.12);border-top:4px solid var(--gold);border-radius:18px;padding:16px 18px;display:flex;gap:14px 20px;align-items:center;flex-wrap:wrap;box-shadow:0 14px 40px rgba(0,0,0,.3)}
+.cookie-box p{flex:1 1 300px;font-size:14px;margin:0}
+.cookie-box b{color:#fff}
+.cookie-actions{display:flex;gap:10px;flex-wrap:wrap}
+.cookie-actions button{min-height:44px;border-radius:999px;padding:10px 20px;font-weight:700;cursor:pointer;font-size:14px;border:0}
+.cookie-accept{background:var(--gold);color:var(--on-orange)}
+.cookie-decline{background:transparent;color:#fff;box-shadow:inset 0 0 0 2px rgba(255,255,255,.6)!important}
+.cookie-link{background:none;border:0;color:#fff;text-decoration:underline;cursor:pointer;padding:0;font:inherit;min-height:44px}
+</style>
+<div class="cookie" id="cookieBanner" role="region" aria-label="Cookie consent" hidden>
+  <div class="cookie-box">
+    <p><b>Cookies</b><br>We'd like to use Google Analytics cookies to see how visitors use our website, so we can improve it. They're only set if you accept.</p>
+    <div class="cookie-actions">
+      <button type="button" class="cookie-decline" id="cookieDecline">Decline</button>
+      <button type="button" class="cookie-accept" id="cookieAccept">Accept</button>
+    </div>
+  </div>
+</div>
+<script>
+(function(){
+  var KEY="md-cookie-consent", banner=document.getElementById("cookieBanner"), loaded=false;
+  function get(){try{return localStorage.getItem(KEY)}catch(e){return null}}
+  function set(v){try{localStorage.setItem(KEY,v)}catch(e){}}
+  function load(){
+    if(loaded)return;loaded=true;
+    gtag('consent','update',{analytics_storage:'granted'});
+    var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+window.GA_ID;document.head.appendChild(s);
+    gtag('js',new Date());gtag('config',window.GA_ID);
+  }
+  function clearGa(){
+    document.cookie.split(';').forEach(function(c){var n=c.split('=')[0].trim();if(/^_ga/.test(n)){[location.hostname,'.'+location.hostname.replace(/^www\./,'')].forEach(function(d){document.cookie=n+'=; Max-Age=0; path=/; domain='+d});document.cookie=n+'=; Max-Age=0; path=/'}});
+  }
+  document.getElementById("cookieAccept").onclick=function(){set("granted");banner.hidden=true;load()};
+  document.getElementById("cookieDecline").onclick=function(){set("denied");banner.hidden=true;if(loaded){gtag('consent','update',{analytics_storage:'denied'})}clearGa()};
+  window.openCookieSettings=function(){banner.hidden=false;document.getElementById("cookieAccept").focus()};
+  var c=get(); if(c==="granted")load(); else if(c!=="denied")banner.hidden=false;
+
+  // Events (only sent once analytics has loaded with consent)
+  function ev(name,params){if(loaded)gtag('event',name,params||{})}
+  document.addEventListener('click',function(e){
+    var a=e.target.closest('[data-add]');
+    if(a&&typeof ITEMS!=="undefined"){var it=ITEMS[a.dataset.add],o=it&&it.opts&&it.opts[+(a.dataset.opt||0)];if(o)ev('add_to_cart',{currency:'GBP',value:o[1],items:[{item_id:it.id,item_name:it.name,item_variant:o[0],price:o[1],quantity:1}]})}
+    var w=e.target.closest('a[href^="https://wa.me"]');
+    if(w){var box=w.closest('.done-box');
+      if(box&&box.id==="poDone")ev('purchase_request_whatsapp',{currency:'GBP',value:(typeof subtotal==="function"?subtotal():0)});
+      else if(box&&box.id==="caterDone")ev('generate_lead',{lead_type:'catering_quote'});
+      else ev('whatsapp_click',{link_location:w.className||'link'});
+    }
+    if(e.target.closest('a[href*="instagram.com"],a[href*="tiktok.com"]'))ev('social_click',{network:e.target.closest('a').href.indexOf('tiktok')>-1?'tiktok':'instagram'});
+  },true);
+  document.addEventListener('submit',function(e){
+    if(e.target.id==="poForm")ev('begin_checkout',{currency:'GBP',value:(typeof subtotal==="function"?subtotal():0)});
+    if(e.target.id==="caterForm")ev('catering_form_filled');
+  },true);
+})();
+</script>
 </body>
 </html>
