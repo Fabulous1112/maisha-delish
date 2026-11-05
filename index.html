@@ -809,6 +809,7 @@ const SECTIONS=[
    {id:"friedrice",name:"Special Fried Rice with Plantain & Turkey",opts:[["Plate",15.5]]},
    {id:"coconut",name:"Coconut Rice with Plantain & Hake Fish",opts:[["Plate",18.5]]},
    {id:"spaghetti",name:"Jollof Spaghetti & Turkey",opts:[["Plate",15.5]]},
+   {id:"beefpasta",name:"Loaded Beef Pasta & Drumsticks",desc:"Spiral pasta loaded with peppered beef strips and sausage, topped with two spicy chicken drumsticks.",opts:[["Plate",18]]},
    {id:"seafood",name:"Luxury Seafood Pasta",opts:[["Order",70]]},
    {id:"moimoi",name:"Moi-Moi",desc:"4 plantain leaves",opts:[["Order",35]]},
    {id:"bbq",name:"3 Barbecue + Peppered Sauce",opts:[["Order",55]]}
@@ -838,7 +839,7 @@ const SECTIONS=[
    {id:"cake",name:"Birthday & Celebration Cakes",desc:"Custom cakes for birthdays and special occasions.",ask:true}
  ]}
 ];
-const PHOTOS={celebration:"img/celebration.jpg",meatpie:"img/pies.jpg",puffpuff:"img/puffpuff.jpg",chinchin:"img/chinchin.jpg",banana:"img/bananabread.jpg",cake:"img/cake.jpg",springroll:"img/smallchops.jpg",samosa:"img/smallchops.jpg",cupcake:"img/cupcakes-daisy.jpg",coconut:"img/coconut-rice-fish.jpg",seafood:"img/seafood-pasta.jpg",bbq:"img/bbq-chicken.jpg",spaghetti:"img/spaghetti.jpg",gizdodo:"img/gizdodo.jpg",agoyin:"img/agoyin.jpg"};
+const PHOTOS={celebration:"img/celebration.jpg",meatpie:"img/pies.jpg",puffpuff:"img/puffpuff.jpg",chinchin:"img/chinchin.jpg",banana:"img/bananabread.jpg",cake:"img/cake.jpg",springroll:"img/smallchops.jpg",samosa:"img/smallchops.jpg",cupcake:"img/cupcakes-daisy.jpg",coconut:"img/coconut-rice-fish.jpg",seafood:"img/seafood-pasta.jpg",bbq:"img/bbq-chicken.jpg",spaghetti:"img/spaghetti.jpg",gizdodo:"img/gizdodo.jpg",agoyin:"img/agoyin.jpg",beefpasta:"img/beef-pasta.jpg"};
 const STOCK=new Set(["cupcake","coconut","seafood","bbq","spaghetti","gizdodo","agoyin"]);
 const ITEMS={};SECTIONS.forEach(s=>s.items.forEach(i=>ITEMS[i.id]=i));
 const $=s=>document.querySelector(s);
