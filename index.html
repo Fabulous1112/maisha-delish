@@ -802,7 +802,8 @@ footer.site p{display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px}
 const WA="447823930527";
 const SECTIONS=[
  {id:"packages",title:"Food Packages",img:"img/celebration.jpg",alt:"Jollof spaghetti, chicken and beans with agoyin sauce",blurb:"Complete party trays, ready to serve.",items:[
-   {id:"celebration",name:"The Ultimate Celebration Tray",incl:["Smokey jollof rice","Fried rice","Beans + agoyin sauce & plantain","Gizdodo","Jollof spaghetti","4 chicken","2 hake fish","2 fruit parfaits","2 shawarma","Box of grapes","Chocolate","Drink"],opts:[["Tray",190]]}
+   {id:"celebration",name:"The Ultimate Celebration Tray",incl:["Smokey jollof rice","Fried rice","Beans + agoyin sauce & plantain","Gizdodo","Jollof spaghetti","4 chicken","2 hake fish","2 fruit parfaits","2 shawarma","Box of grapes","Chocolate","Drink"],opts:[["Tray",190]]},
+   {id:"smallchopstray",name:"Maisha’s Small Chops Tray",desc:"A party favourite: golden puff puff, samosas, spring rolls and peppered meat, served with fresh cucumber and onions.",opts:[["Tray",60]]}
  ]},
  {id:"special",title:"Specialized Dishes",img:"img/dishes.jpg",alt:"Bowls of jollof rice, grilled chicken and ofada rice",blurb:"Signature plates and party dishes.",items:[
    {id:"goatjollof",name:"Goat Meat Jollof or Suya Rice with Plantain",opts:[["Goat meat jollof",15.5],["Suya rice",15.5]]},
@@ -839,7 +840,7 @@ const SECTIONS=[
    {id:"cake",name:"Birthday & Celebration Cakes",desc:"Custom cakes for birthdays and special occasions.",ask:true}
  ]}
 ];
-const PHOTOS={celebration:"img/celebration.jpg",meatpie:"img/pies.jpg",puffpuff:"img/puffpuff.jpg",chinchin:"img/chinchin.jpg",banana:"img/bananabread.jpg",cake:"img/cake.jpg",springroll:"img/smallchops.jpg",samosa:"img/smallchops.jpg",cupcake:"img/cupcakes-daisy.jpg",coconut:"img/coconut-rice-fish.jpg",seafood:"img/seafood-pasta.jpg",bbq:"img/bbq-chicken.jpg",spaghetti:"img/spaghetti.jpg",gizdodo:"img/gizdodo.jpg",agoyin:"img/agoyin.jpg",beefpasta:"img/beef-pasta.jpg"};
+const PHOTOS={celebration:"img/celebration.jpg",meatpie:"img/pies.jpg",puffpuff:"img/puffpuff.jpg",chinchin:"img/chinchin.jpg",banana:"img/bananabread.jpg",cake:"img/cake.jpg",springroll:"img/smallchops.jpg",samosa:"img/smallchops.jpg",cupcake:"img/cupcakes-daisy.jpg",coconut:"img/coconut-rice-fish.jpg",seafood:"img/seafood-pasta.jpg",bbq:"img/bbq-chicken.jpg",spaghetti:"img/spaghetti.jpg",gizdodo:"img/gizdodo.jpg",agoyin:"img/agoyin.jpg",beefpasta:"img/beef-pasta.jpg",smallchopstray:"img/small-chops-tray.jpg"};
 const STOCK=new Set(["cupcake","coconut","seafood","bbq","spaghetti","gizdodo","agoyin"]);
 const ITEMS={};SECTIONS.forEach(s=>s.items.forEach(i=>ITEMS[i.id]=i));
 const $=s=>document.querySelector(s);
