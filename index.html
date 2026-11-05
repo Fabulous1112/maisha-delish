@@ -842,8 +842,8 @@ const SECTIONS=[
    {id:"cake",name:"Birthday & Celebration Cakes",desc:"Custom cakes for birthdays and special occasions.",ask:true,askLabel:"Ask for a quote on WhatsApp",askMsg:"Hello Maisha Delish, I'd like a quote for a custom cake."}
  ]}
 ];
-const PHOTOS={celebration:"img/celebration.jpg",meatpie:"img/pies.jpg",puffpuff:"img/puffpuff.jpg",chinchin:"img/chinchin.jpg",banana:"img/bananabread.jpg",cake:"img/cake.jpg",springroll:"img/smallchops.jpg",samosa:"img/smallchops.jpg",cupcake:"img/cupcakes-daisy.jpg",coconut:"img/coconut-rice-fish.jpg",seafood:"img/seafood-pasta.jpg",bbq:"img/bbq-chicken.jpg",spaghetti:"img/spaghetti.jpg",gizdodo:"img/gizdodo.jpg",agoyin:"img/agoyin.jpg",beefpasta:"img/beef-pasta.jpg",smallchopstray:"img/small-chops-tray.jpg",eggroll:"img/egg-rolls.jpg",piebananapack:"img/pie-banana-pack.jpg"};
-const STOCK=new Set(["cupcake","coconut","seafood","bbq","spaghetti","gizdodo","agoyin"]);
+const PHOTOS={celebration:"img/celebration.jpg",meatpie:"img/pies.jpg",puffpuff:"img/puffpuff.jpg",chinchin:"img/chinchin.jpg",banana:"img/bananabread.jpg",cake:"img/cake.jpg",springroll:"img/smallchops.jpg",samosa:"img/smallchops.jpg",cupcake:"img/cupcakes-daisy.jpg",coconut:"img/coconut-rice-fish.jpg",seafood:"img/seafood-pasta.jpg",bbq:"img/bbq-chicken.jpg",spaghetti:"img/spaghetti.jpg",gizdodo:"img/gizdodo.jpg",agoyin:"img/agoyin.jpg",beefpasta:"img/beef-pasta.jpg",smallchopstray:"img/small-chops-tray.jpg",eggroll:"img/egg-rolls.jpg",piebananapack:"img/pie-banana-pack.jpg",shawarma:"img/shawarma.jpg"};
+const STOCK=new Set(["cupcake","coconut","seafood","bbq","spaghetti","gizdodo","agoyin","shawarma"]);
 const ITEMS={};SECTIONS.forEach(s=>s.items.forEach(i=>ITEMS[i.id]=i));
 const $=s=>document.querySelector(s);
 const gbp=n=>"£"+n.toFixed(2);
