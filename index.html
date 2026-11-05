@@ -747,7 +747,7 @@ footer.site p{display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px}
           <label>Pickup or delivery<select id="p-mode"><option>Pickup</option><option>Delivery</option></select></label>
           <label>Date needed<input id="p-date" type="date"></label>
           <label class="full">Delivery address / postcode<input id="p-addr" placeholder="Only needed for delivery"></label>
-          <label class="full">Notes (pepper level, allergies, pastry mix)<textarea id="p-notes"></textarea></label>
+          <label class="full">Notes (pepper level, allergies, pastry mix, shawarma filling)<textarea id="p-notes" placeholder="e.g. Shawarma with extra chicken and no onions"></textarea></label>
           <div class="full"><button class="btn gold" type="submit">Prepare my order</button></div>
           <div class="done-box" id="poDone" hidden></div>
         </form>
@@ -810,6 +810,7 @@ const SECTIONS=[
    {id:"friedrice",name:"Special Fried Rice with Plantain & Turkey",opts:[["Plate",15.5]]},
    {id:"coconut",name:"Coconut Rice with Plantain & Hake Fish",opts:[["Plate",18.5]]},
    {id:"spaghetti",name:"Jollof Spaghetti & Turkey",opts:[["Plate",15.5]]},
+   {id:"shawarma",name:"Chicken Shawarma",desc:"Grilled wrap packed with seasoned chicken. Customise it with any filling of your choice: just tell us in your order notes.",opts:[["Each",5]]},
    {id:"beefpasta",name:"Loaded Beef Pasta & Drumsticks",desc:"Spiral pasta loaded with peppered beef strips and sausage, topped with two spicy chicken drumsticks.",opts:[["Plate",18]]},
    {id:"seafood",name:"Luxury Seafood Pasta",opts:[["Order",70]]},
    {id:"moimoi",name:"Moi-Moi",desc:"4 plantain leaves",opts:[["Order",35]]},
@@ -827,7 +828,8 @@ const SECTIONS=[
    {id:"samosa",name:"Samosa",desc:"Crispy pastry, seasoned beef or chicken filling.",opts:[["Each",2],["Pleasure Box (10)",10]]},
    {id:"springroll",name:"Spring Rolls",desc:"Crunchy roll with mixed vegetables/chicken.",opts:[["Each",2],["Pleasure Box (10)",10]]},
    {id:"eggroll",name:"Egg Roll",desc:"Boiled egg wrapped in flaky dough.",opts:[["Each",2.5],["Pleasure Box (10)",25]]},
-   {id:"fishroll",name:"Baked Fish Roll",desc:"Soft roll with spiced fish filling.",opts:[["Each",2.5],["Pleasure Box (10)",25]]}
+   {id:"fishroll",name:"Baked Fish Roll",desc:"Soft roll with spiced fish filling.",opts:[["Each",2.5],["Pleasure Box (10)",25]]},
+   {id:"piebananapack",name:"Meat Pie & Banana Bread Pack",desc:"Golden meat pies and soft banana bread together in one sealed pack, ready to share or gift.",ask:true}
  ]},
  {id:"sweet",title:"Sweet & Fried Treats",img:"img/chinchin.jpg",alt:"Tubs of chin chin",blurb:"Soft, sweet and crunchy, freshly made.",items:[
    {id:"puffpuff",name:"Puff Puff",desc:"Soft, sweet dough balls.",opts:[["Each",1],["10 for £10",10]]},
@@ -837,10 +839,10 @@ const SECTIONS=[
  {id:"cakes",title:"Cakes & Bakes",img:"img/cake.jpg",alt:"White birthday cake with gold crown topper",img2:"img/cupcakes.jpg",alt2:"Cupcakes with white frosting on a cake stand",blurb:"Cupcakes, banana bread and custom celebration cakes.",items:[
    {id:"cupcake",name:"Cupcakes",desc:"Moist sponge with buttercream frosting.",opts:[["Each",3]]},
    {id:"banana",name:"Banana Bread",desc:"Freshly baked, soft, with your preferred choice of toppings.",opts:[["Each",4]]},
-   {id:"cake",name:"Birthday & Celebration Cakes",desc:"Custom cakes for birthdays and special occasions.",ask:true}
+   {id:"cake",name:"Birthday & Celebration Cakes",desc:"Custom cakes for birthdays and special occasions.",ask:true,askLabel:"Ask for a quote on WhatsApp",askMsg:"Hello Maisha Delish, I'd like a quote for a custom cake."}
  ]}
 ];
-const PHOTOS={celebration:"img/celebration.jpg",meatpie:"img/pies.jpg",puffpuff:"img/puffpuff.jpg",chinchin:"img/chinchin.jpg",banana:"img/bananabread.jpg",cake:"img/cake.jpg",springroll:"img/smallchops.jpg",samosa:"img/smallchops.jpg",cupcake:"img/cupcakes-daisy.jpg",coconut:"img/coconut-rice-fish.jpg",seafood:"img/seafood-pasta.jpg",bbq:"img/bbq-chicken.jpg",spaghetti:"img/spaghetti.jpg",gizdodo:"img/gizdodo.jpg",agoyin:"img/agoyin.jpg",beefpasta:"img/beef-pasta.jpg",smallchopstray:"img/small-chops-tray.jpg",eggroll:"img/egg-rolls.jpg"};
+const PHOTOS={celebration:"img/celebration.jpg",meatpie:"img/pies.jpg",puffpuff:"img/puffpuff.jpg",chinchin:"img/chinchin.jpg",banana:"img/bananabread.jpg",cake:"img/cake.jpg",springroll:"img/smallchops.jpg",samosa:"img/smallchops.jpg",cupcake:"img/cupcakes-daisy.jpg",coconut:"img/coconut-rice-fish.jpg",seafood:"img/seafood-pasta.jpg",bbq:"img/bbq-chicken.jpg",spaghetti:"img/spaghetti.jpg",gizdodo:"img/gizdodo.jpg",agoyin:"img/agoyin.jpg",beefpasta:"img/beef-pasta.jpg",smallchopstray:"img/small-chops-tray.jpg",eggroll:"img/egg-rolls.jpg",piebananapack:"img/pie-banana-pack.jpg"};
 const STOCK=new Set(["cupcake","coconut","seafood","bbq","spaghetti","gizdodo","agoyin"]);
 const ITEMS={};SECTIONS.forEach(s=>s.items.forEach(i=>ITEMS[i.id]=i));
 const $=s=>document.querySelector(s);
@@ -868,7 +870,7 @@ SECTIONS.forEach(s=>{
     if(STOCK.has(it.id))h+=`<small class="illus">Photo for illustration</small>`;
     if(it.incl)h+=`<div class="incl">${it.incl.map(x=>`<span>${esc(x)}</span>`).join("")}</div>`;
     h+=`<div class="opts">`;
-    if(it.ask){h+=`<a class="opt ask" href="https://wa.me/${WA}?text=${encodeURIComponent("Hello Maisha Delish, I'd like a quote for a custom cake.")}" target="_blank" rel="noopener">Ask for a quote on WhatsApp</a>`}
+    if(it.ask){h+=`<a class="opt ask" href="https://wa.me/${WA}?text=${encodeURIComponent(it.askMsg||("Hello Maisha Delish, I'd like to order the "+it.name+". What's the price?"))}" target="_blank" rel="noopener">${esc(it.askLabel||"Ask for the price on WhatsApp")}</a>`}
     else it.opts.forEach((o,i)=>{h+=`<button class="opt" data-add="${it.id}" data-opt="${i}">${esc(o[0])} <b>${gbp(o[1])}</b></button>`});
     d.innerHTML=h+`</div></div>`;box.appendChild(d);
   });
